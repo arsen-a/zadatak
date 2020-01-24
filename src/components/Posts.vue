@@ -88,7 +88,7 @@ export default {
       }
     },
     searchPosts() {
-      this.filteredPosts = this.allPosts.filter(post => post.title.includes(this.searchTerm))
+      this.filteredPosts = this.allPosts.filter(post => post.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
     }
   },
   data() {
