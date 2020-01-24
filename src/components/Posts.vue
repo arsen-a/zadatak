@@ -88,14 +88,22 @@ export default {
       }
     },
     searchPosts() {
-      this.filteredPosts = this.allPosts.filter(post => post.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
+      let filteredTitle = this.allPosts.filter(post =>
+        post.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+      let filteredBody = this.allPosts.filter(post =>
+        post.body.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+
+      let filtered = [...new Set([...filteredTitle, ...filteredBody])];
+      this.filteredPosts = filtered;
     }
   },
   data() {
     return {
       searchTerm: "",
       filteredPosts: []
-    }
+    };
   }
 };
 </script>
