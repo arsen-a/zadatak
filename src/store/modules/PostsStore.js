@@ -19,13 +19,26 @@ export const PostsStore = {
                 body: 'This is the content of the third post.',
                 image: 'https://static.makeuseof.com/wp-content/uploads/2018/02/post-panorama-instagram-670x335.jpg'
             }
-        ]
+        ],
+        nextId: 4
     },
     mutations: {
-
+        setNewPost(state, post) {
+            state.allPosts.push({...post, id: state.nextId})
+            state.nextId++
+        },
+        removePost(state, id) {
+            let toDelete = state.allPosts.findIndex(post => post.id === id);
+            state.allPosts.splice(toDelete, 1)
+        }
     },
     actions: {
-
+        addPost(conext, post) {
+            conext.commit('setNewPost', post)
+        },
+        deletePost(context, postId) {
+            context.commit('removePost', postId)
+        }
     },
     getters: {
         allPosts(state) {

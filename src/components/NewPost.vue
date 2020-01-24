@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: "new-post",
   data() {
@@ -40,7 +42,13 @@ export default {
     };
   },
   methods: {
-    submitPost() {}
+    ...mapActions({
+        addPost: 'addPost'
+    }),
+    submitPost() {
+        this.addPost(this.newPost)
+        this.$router.push({ name: 'all-posts' })
+    }
   }
 };
 </script>

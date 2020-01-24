@@ -9,9 +9,18 @@
         v-for="post in allPosts"
         :key="post.id"
       >
-        <div class="d-flex flex-row align-items-center mt-2">
-          <img :src="post.image" alt="Post image" />
-          <h3 class="m-0 p-0">{{ post.title }}</h3>
+        <div class="d-flex flex-row align-items-center mt-2 justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+            <img :src="post.image" alt="Post image" />
+            <h3 class="m-0 p-0">{{ post.title }}</h3>
+          </div>
+          <button
+            class="btn btn-danger"
+            type="button"
+            @click="removePost(post.id)"
+          >
+            Remove post
+          </button>
         </div>
         <div class="mt-4">
           {{ post.body }}
@@ -22,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "posts",
@@ -30,6 +39,16 @@ export default {
     ...mapGetters({
       allPosts: "allPosts"
     })
+  },
+  methods: {
+    ...mapActions({
+      deletePost: "deletePost"
+    }),
+    removePost(id) {
+      if (confirm("Delete this post?")) {
+        this.deletePost(id);
+      }
+    }
   }
 };
 </script>
