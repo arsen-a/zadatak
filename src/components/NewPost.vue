@@ -4,11 +4,11 @@
       <h1 class="pb-3">Add a new post</h1>
       <div class="form-group">
         <label>Title</label>
-        <input v-model="newPost.title" type="text" class="form-control" />
+        <input v-model="newPost.title" type="text" class="form-control" required/>
       </div>
       <div class="form-group">
         <label>Image</label>
-        <input v-model="newPost.image" type="text" class="form-control" />
+        <input v-model="newPost.image" type="url" required class="form-control" />
       </div>
       <div class="form-group">
         <label>Body</label>
@@ -18,6 +18,7 @@
           name="body"
           cols="50"
           rows="5"
+          required
         ></textarea>
       </div>
       <button class="btn btn-success" type="submit">
